@@ -1,0 +1,10 @@
+$ git clone https://github.com/minhng92/odoo-16-docker-compose
+$ cd odoo-16-docker-compose
+$ sudo chmod -R 777 addons && sudo chmod -R 777 etc && mkdir -p postgresql && sudo chmod -R 777 postgresql
+$ if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F "fs.inotify.max_user_watches" /etc/sysctl.conf); else echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf; fi
+$ sudo sysctl -p    # apply new config immediately
+$ docker-compose up -d
+
+
+
+curl -s https://raw.githubusercontent.com/minhng92/odoo-16-docker-compose/master/run.sh | sudo bash -s odoo-one 10016 20016
